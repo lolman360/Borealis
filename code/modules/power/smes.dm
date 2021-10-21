@@ -49,7 +49,7 @@
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
 	var/obj/machinery/power/terminal/terminal = null
 	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
-	var/skill_check = STAT_LEVEL_ADEPT
+	var/skill_check = STAT_LEVEL_BASIC
 
 /obj/machinery/power/smes/dummysimple
 	name = "simple power storage unit"
