@@ -129,7 +129,7 @@
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name", pref.real_name)  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
-			var/new_name = sanitizeName(raw_name)
+			var/new_name = sanitizeName(raw_name,allow_numbers=TRUE)
 			if(new_name)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
