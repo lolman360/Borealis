@@ -187,7 +187,7 @@
 	use_power(1000)
 	visible_message(SPAN_DANGER("You hear a loud squelchy grinding sound."))
 	src.operating = 1
-
+	
 
 	var/slab_name = occupant.name
 	var/slab_count = 0
@@ -253,12 +253,12 @@
 			if(ishuman(occupant))
 				src.occupant.ghostize()
 
-
+		
 			src.occupant.gib()
 			var/mob/living/to_delete = occupant
 			occupant = null
 			qdel(to_delete)
-
+			
 
 			playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 			operating = 0
@@ -272,3 +272,4 @@
 				thing.throw_at(get_edge_target_turf(src,gib_throw_dir),rand(0,3),emagged ? 100 : 50) // Being pelted with bits of meat and bone would hurt.
 
 		update_icon()
+
