@@ -86,6 +86,7 @@
 					squeals++
 					last_squealgain = world.time
 
+
 //Pixel offsetting as they scamper around
 /mob/living/simple_animal/mouse/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if((. = ..()))
