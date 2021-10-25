@@ -1,4 +1,4 @@
-/obj/item/ammo_magazine
+/obj/item/ammo_magazine/
 	name = "not a magazine"
 	icon_state = "10l"
 
