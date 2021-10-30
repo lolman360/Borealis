@@ -23,7 +23,7 @@
 	var/web_activity = 30
 	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 5, bio = 10, rad = 25, agony = 0)
 	var/egg_inject_chance = 0 //AHAHAHAHAHAHAHAAHAHAH, no
-	life_cycles_before_sleep = 3000 //We need more time to eat and web
+//	life_cycles_before_sleep = 3000 //We need more time to eat and web (Zavod edit: Commented out to improve performance.)
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/midwife
 	name = "midwife spider"
