@@ -535,6 +535,7 @@
 	pockets.storage_slots = 2	//two slots
 	pockets.max_w_class = ITEM_SIZE_NORMAL		//fits two normal size items as its big pockets
 	pockets.max_storage_space = 8
+	pockets.cant_hold = list(/obj/item/clothing/accessory)
 
 //Blackshield armor
 /obj/item/clothing/suit/armor/platecarrier

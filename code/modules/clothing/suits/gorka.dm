@@ -118,6 +118,7 @@
 	pockets.storage_slots = 2	//two slots
 	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
 	pockets.max_storage_space = 4
+	pockets.cant_hold = list(/obj/item/clothing/accessory)
 
 /obj/item/clothing/suit/gorka/Destroy()
 	qdel(pockets)
