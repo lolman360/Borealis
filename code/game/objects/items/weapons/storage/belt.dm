@@ -436,7 +436,13 @@
 	desc = "Everything you need at hand, at belt."
 	icon_state = "webbing"
 	item_state = "webbing"
-	storage_slots = 9
+	storage_slots = 9 //Zavod edit: Revert of the Trilby change which nerfs webbings in general.
+
+/obj/item/storage/belt/webbing/artificer
+	name = "artificer guild web harness"
+	desc = "Everything you need at hand, at belt. This one is hand crafted by the artificer guild, allowing it to better store larger items by sacrificing a small bit of space. Better than most tool belts."
+	max_w_class = ITEM_SIZE_NORMAL // This is specifically crafted by the guild as webbings are useless for tools without being able to fit normal sized items.
+	storage_slots = 12 //Bigger storage. Hooray!
 
 /obj/item/storage/belt/webbing/green
 	name = "green web harness"

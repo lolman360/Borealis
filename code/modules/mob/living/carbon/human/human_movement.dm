@@ -20,7 +20,7 @@
 	if(stats.getPerk(PERK_FAST_WALKER))
 		tally -= 0.5
 	if(stats.getPerk(PERK_NANITE_MUSCLE))
-		tally -= 0.4
+		tally -= 0.3 //Zavod edit. Lowered to 0.3 from 0.4
 	if(stats.getPerk(PERK_SCUTTLEBUG))
 		tally -= 0.3
 	if(stats.getPerk(PERK_REZ_SICKNESS))
