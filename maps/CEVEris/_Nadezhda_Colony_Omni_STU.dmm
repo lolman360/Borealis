@@ -11267,12 +11267,16 @@
 /turf/simulated/floor/tiled/dark,
 /area/nadezhda/security/prisoncells)
 "cHD" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
 /area/nadezhda/medical/genetics)
 "cHE" = (
 /obj/structure/table/steel,
@@ -11600,13 +11604,7 @@
 /turf/simulated/floor/wood,
 /area/nadezhda/medical/psych)
 "cLA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/steel/gray_perforated,
 /area/nadezhda/medical/genetics)
 "cLN" = (
 /obj/machinery/atmospherics/binary/pump/high_power{
@@ -12450,13 +12448,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/nadezhda/maintenance/undergroundfloor1west)
 "cVA" = (
-/obj/machinery/light{
-	light_color = "#b9e8ea"
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark/violetcorener,
-/area/nadezhda/rnd/docking{
-	name = "\improper Upper Research Hallway"
-	})
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/nadezhda/medical/genetics)
 "cVD" = (
 /turf/simulated/floor/tiled/steel,
 /area/turbolift/ElevatorOne/surface)
@@ -12485,6 +12483,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/nadezhda/command/courtroom)
+"cVN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/nadezhda/medical/genetics)
 "cVP" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/dark,
@@ -12497,6 +12504,14 @@
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/nadezhda/outside/meadow)
+"cVW" = (
+/obj/machinery/light{
+	light_color = "#b9e8ea"
+	},
+/turf/simulated/floor/tiled/dark/violetcorener,
+/area/nadezhda/rnd/docking{
+	name = "\improper Upper Research Hallway"
+	})
 "cVY" = (
 /obj/structure/table/steel,
 /obj/random/rig_module/low_chance,
@@ -37567,7 +37582,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/machinery/genetics/cloner,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -170278,12 +170292,12 @@ sFI
 sFI
 sFI
 lwW
-biX
+cHD
 nMs
 pxg
 pxg
 iQG
-nMs
+cLA
 pxg
 wDw
 biX
@@ -171297,7 +171311,7 @@ xEh
 xEh
 wiR
 xEh
-cLA
+cVN
 vra
 xgp
 lwW
@@ -171498,7 +171512,7 @@ xEh
 qrs
 uuE
 uuE
-cHD
+cVA
 tMP
 pdX
 dxU
@@ -176359,7 +176373,7 @@ jpF
 jpF
 eXm
 dyT
-cVA
+cVW
 klk
 klk
 klk
