@@ -436,9 +436,7 @@
 	desc = "Everything you need at hand, at belt."
 	icon_state = "webbing"
 	item_state = "webbing"
-	storage_slots = 14
-	max_w_class = ITEM_SIZE_SMALL //Holds 14 small items like a real harness, and hats
-	max_storage_space = DEFAULT_NORMAL_STORAGE
+	storage_slots = 9 //Zavod edit: Revert of the Trilby change which nerfs webbings in general.
 
 /obj/item/storage/belt/webbing/green
 	name = "green web harness"
@@ -495,7 +493,7 @@
 			return
 
 		if(options[choice] == "big_storage")
-			to_chat(M, "You allow the storage of 9 Normale items.")
+			to_chat(M, "You allow the storage of 9 Normal items.")
 			storage_slots = 9 //Like old belts used to be
 			max_w_class = ITEM_SIZE_NORMAL
 			return
@@ -506,9 +504,4 @@
 			max_w_class = ITEM_SIZE_SMALL
 			return
 
-
 		return 1
-
-
-
-
