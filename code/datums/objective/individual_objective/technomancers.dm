@@ -1,4 +1,4 @@
-/datum/individual_objective/disturbance
+/*/datum/individual_objective/disturbance
 	name = "Disturbance"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	units_requested = 10 MINUTES
@@ -26,8 +26,8 @@
 /datum/individual_objective/disturbance/completed()
 	if(completed) return
 	UnregisterSignal(target_area, COMSIG_AREA_APC_OPERATING)
-	..()
-
+	..()*/
+/*
 /datum/individual_objective/more_tech
 	name = "Endless Search"
 	req_department = list(DEPARTMENT_ENGINEERING)
@@ -52,7 +52,7 @@
 /datum/individual_objective/more_tech/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
-	..()
+	..()*/
 
 /datum/individual_objective/oddity
 	name = "Warded"

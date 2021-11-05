@@ -26,7 +26,7 @@
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
 	..()
 */
-/datum/individual_objective/museum
+/*/datum/individual_objective/museum
 	name = "It belongs in a Museum"
 	desc = "Ensure that 3-4 oddities were sold via cargo."
 	req_department = list(DEPARTMENT_LSS)
@@ -45,7 +45,7 @@
 	if(completed) return
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
 	..()
-
+*/
 /datum/individual_objective/order
 	name = "Special Order"
 	req_department = list(DEPARTMENT_LSS)
@@ -78,7 +78,7 @@
 	/obj/item/device/makeshift_electrolyser = 1,
 	/obj/item/device/makeshift_centrifuge = 1
 	))
-
+/*
 /datum/individual_objective/order/assign()
 	..()
 	target = pick_candidates()
@@ -133,7 +133,7 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
-
+*/
 /datum/individual_objective/transfer
 	name = "Questionable Business"
 	req_department = list(DEPARTMENT_LSS)
