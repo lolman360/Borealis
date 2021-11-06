@@ -60,7 +60,7 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
 	..()
-*/
+*//*
 /datum/individual_objective/adiction
 	name = "Better living through chemistry"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
@@ -102,7 +102,7 @@
 /datum/individual_objective/autopsy/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_AUTOPSY)
-	..()
+	..()*/
 /*
 /datum/individual_objective/more_research
 	name = "Progress no matter the cost."

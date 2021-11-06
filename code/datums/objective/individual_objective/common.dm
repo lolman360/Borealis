@@ -69,7 +69,7 @@
 #define MOB_ADD_DRUG 1
 #define ON_MOB_DRUG 2
 #define MOB_DELETE_DRUG 3
-
+/*
 /datum/individual_objective/addict
 	name = "Oil the Cogs"
 	based_time = TRUE
@@ -100,7 +100,7 @@
 /datum/individual_objective/addict/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_CARBON_HAPPY)
-	..()
+	..()*/
 /*
 /datum/individual_objective/gift
 	name = "Odd Gift"
@@ -201,7 +201,7 @@
 	UnregisterSignal(target, COMSIG_HUMAN_SANITY)
 	..()
 */
-/datum/individual_objective/obsession
+/*/datum/individual_objective/obsession
 	name = "Obsessive Observation"
 	var/mob/living/carbon/human/target
 	var/timer
@@ -235,7 +235,7 @@
 /datum/individual_objective/obsession/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
-	..()
+	..()*/
 /*
 /datum/individual_objective/greed
 	name = "Greed"
@@ -276,6 +276,7 @@
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
 */
+/*
 /datum/individual_objective/collenction
 	name = "Collection"
 	var/obj/item/target
@@ -378,4 +379,4 @@
 /datum/individual_objective/bills/completed()
 	if(completed) return
 	UnregisterSignal(owner.initial_account, COMSIG_TRANSATION)
-	..()
+	..()*/
