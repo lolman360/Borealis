@@ -40,7 +40,7 @@
 		ventHeat(TRUE)
 
 
-/datum/component/proc/ventHeat(var/forced)
+/datum/component/heat/proc/ventHeat(var/forced)
 	if(!forced && lastVentedTick - world.time < ventCooldown)
 		return FALSE //we fail
 	currentHeat = 0

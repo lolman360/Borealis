@@ -1,7 +1,7 @@
 /obj/item/gun/hydrogen/pistol
 	name = "\improper \"Classia\" hydrogen-plasma pistol"
-	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brainchild of Soteria Director Nakharan Mkne, meant to compete and exceed the church of the absolutes \
-	own plasma designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapons over heating without being \
+	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brainchild of Soteria Director Nakharan Mkne, meant to compete with and exceed capabilities of Absolutist \
+	plasma weapon designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapon's extreme heat generation without being \
 	burnt to a crisp. This variant is a pistol, capable of fitting a holster for discrete travel and easy drawing."
 	icon = 'icons/obj/guns/plasma/hydrogen.dmi'
 	icon_state = "pistol"
@@ -20,8 +20,8 @@
 
 /obj/item/gun/hydrogen/cannon
 	name = "\improper \"Sollex\" hydrogen-plasma cannon"
-	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brainchild of Soteria Director Nakharan Mkne, meant to compete and exceed the church of the absolutes \
-	own plasma designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapons over heating without being \
+	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brainchild of Soteria Director Nakharan Mkne, meant to compete with and exceed capabilities of Absolutist \
+	plasma weapon designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapon's extreme heat generation without being \
 	burnt to a crisp."
 	icon = 'icons/obj/guns/plasma/hydrogen.dmi'
 	icon_state = "cannon"

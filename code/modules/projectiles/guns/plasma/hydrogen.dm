@@ -13,8 +13,8 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 
 /obj/item/gun/hydrogen
 	name = "\improper \"Venatori\" hydrogen-plasma gun"
-	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brain child of Soteria Director Nakharan Mkne, meant to compete and exceed the church of the absolutes \
-	own plasma designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapons over heating without being \
+	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brainchild of Soteria Director Nakharan Mkne, meant to compete with and exceed capabilities of Absolutist \
+	plasma weapon designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapon's extreme heat generation without being \
 	burnt to a crisp."
 	icon = 'icons/obj/guns/plasma/hydrogen.dmi'
 	icon_state = "plasma"
@@ -48,11 +48,12 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 /obj/item/gun/hydrogen/Initialize()
 	..()
 	flask = new /obj/item/hydrogen_fuel_cell(src) // Give the gun a new flask when mapped in.
-	AddComponent(/datum/component/heat, clickTypeToVent = COMSIG_CLICK_CTRL, parentIsGun = TRUE, _heatThresholdSpecial = vent_level, _overheatThreshold = overheat, _heatPerFire = heat_per_shot, _coolPerTick = 2, _ventCooldown = vent_level_timer)
 	RegisterSignal(src, COMSIG_HEAT_VENT, .proc/ventEvent)
 	RegisterSignal(src, COMSIG_HEAT_OVERHEAT, .proc/handleoverheat)
+	AddComponent(/datum/component/heat, clickTypeToVent = COMSIG_CLICK_CTRL, parentIsGun = TRUE, _heatThresholdSpecial = vent_level, _overheatThreshold = overheat, _heatPerFire = heat_per_shot, _coolPerTick = 2, _ventCooldown = vent_level_timer)
 	update_icon()
 	START_PROCESSING(SSobj, src)
+
 
 /obj/item/gun/hydrogen/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -110,7 +111,11 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 											SPAN_NOTICE("[user] make a mistake while unsecuring the flask and burns \his hand."),
 											SPAN_NOTICE("You make a mistake while unsecuring the flask and burns your hand.")
 										)
-					overheating(user)
+					if(user.hand == user.l_hand) // Are we using the left arm?
+						user.apply_damage(overheat_damage, BURN, def_zone = BP_L_ARM)
+					else // If not then it must be the right arm.
+						user.apply_damage(overheat_damage, BURN, def_zone = BP_R_ARM)
+
 				return
 		else
 			to_chat(user, "There is no flask to remove.")
@@ -165,7 +170,7 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 
 
 // The weapon is too hot, burns the user's hand.
-/obj/item/gun/hydrogen/proc/overheating()
+/obj/item/gun/hydrogen/proc/handleoverheat()
 	src.visible_message(SPAN_DANGER("The [src.name] overheat, burning its wielder's hands!"))
 	if(loc == /mob/living)
 		var/mob/living/L = loc
