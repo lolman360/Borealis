@@ -86,7 +86,7 @@
 		welder.flask = flask // Link the flask to the welder
 		flask.forceMove(welder) // Give the flask to the welder
 		flask = null // The gun has no more flask
-	usr.remove_from_mob(src) // Remove the gun from the user
+	usr.unEquip(src) // Remove the gun from the user
 	src.forceMove(welder) // Move the gun into the welder
 	usr.put_in_hands(welder) // Put the welder in the user's hand.
 	usr.visible_message(
