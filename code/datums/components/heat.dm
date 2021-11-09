@@ -28,7 +28,6 @@
 
 /datum/component/heat/proc/tickHeat()
 	var/deltaT = world.time - lastFiredTick
-	world.log << max(0, currentHeat - deltaT*coolPerTick) //debug line
 	currentHeat = max(0, currentHeat - deltaT*coolPerTick)
 
 	currentHeat += heatPerFire
@@ -38,17 +37,17 @@
 
 	if(currentHeat >= overheatThreshold)
 		SEND_SIGNAL(parent, COMSIG_HEAT_OVERHEAT)
-		ventHeat(TRUE)
+		overheatVent()
 
 
-/datum/component/heat/proc/ventHeat(var/forced = FALSE)
-	if(world.time - lastVentedTick < ventCooldown)
-		world.log << "VENT CD"
-		return FALSE //we fail
-	else
+/datum/component/heat/proc/ventHeat()
+	if(world.time - lastVentedTick > ventCooldown)
 		currentHeat = 0
-		world.log << "VENT"
 		SEND_SIGNAL(parent, COMSIG_HEAT_VENT)
-		if(!forced)
-			world.log << "VENT CD reset"
-			lastVentedTick = world.time
+		lastVentedTick = world.time
+	else
+		return FALSE //we fail
+
+
+/datum/component/heat/proc/overheatVent()
+	currentHeat = 0

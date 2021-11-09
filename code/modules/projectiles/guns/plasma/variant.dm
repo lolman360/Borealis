@@ -28,7 +28,7 @@
 	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_MHYDROGEN = 8, MATERIAL_OSMIUM = 6, MATERIAL_TRITIUM = 3)
 	origin_tech = list(TECH_COMBAT = 9, TECH_MATERIAL = 7, TECH_PLASMA = 10)
 	projectile_type = /obj/item/projectile/hydrogen/cannon
-	vent_level_timer = 5 //10 seconds between vents, but builds heat a lot faster.
+	vent_level_timer = 10 SECONDS //10 seconds between vents, but builds heat a lot faster.
 	use_plasma_cost = 20 // How much plasma is used per shot
 	heat_per_shot = 50
 

@@ -39,7 +39,7 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 	var/obj/item/hydrogen_fuel_cell/backpack/connected = null // The backpack the gun is connected to
 	var/secured = TRUE // Is the flask secured?
 	var/vent_level = 50 // Threshold at which is automatically vent_level
-	var/vent_level_timer = 15 // Timer in 2 seconds before the next venting can happen. A value of 15 mean that it will take 30 seconds before the gun can vent itself again.
+	var/vent_level_timer = 30 SECONDS
 	var/overheat = 100 // Max heat before overheating.
 	// Damage dealt when overheating
 	var/overheat_damage = 25 // Applied to the hand holding the gun.
@@ -177,18 +177,22 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 
 // Vent the weapon
 /obj/item/gun/hydrogen/proc/ventEvent() //lol
-	src.visible_message("The [src.name]'s vents open and spew super-heated steam, cooling itself down.")
+	src.visible_message("[src]'s vents open and spew super-heated steam, cooling itself down.")
 
 
 // The weapon is too hot, burns the user's hand.
 /obj/item/gun/hydrogen/proc/handleoverheat()
-	src.visible_message(SPAN_DANGER("The [src.name] overheats, burning its wielder's hands!"))
+	src.visible_message(SPAN_DANGER("[src] overheats, its surface becoming blisteringly hot as a pressure warning beeps!"))
+	addtimer(CALLBACK(src , .proc/doVentsplosion), 3 SECONDS)
 	if(isliving(loc))
 		var/mob/living/L = loc
+		to_chat(L, SPAN_DANGER("[src] is going to explode!"))
 	// Burn the hand holding the gun
 		if(L.hand == L.l_hand) // Are we using the left arm?
 			L.apply_damage(overheat_damage, BURN, def_zone = BP_L_ARM)
 		else // If not then it must be the right arm.
 			L.apply_damage(overheat_damage, BURN, def_zone = BP_R_ARM)
 
-//
+/obj/item/gun/hydrogen/proc/doVentsplosion()
+	src.visible_message(SPAN_DANGER("[src]'s overpressure valves open, releasing a powerful shockwave!"))
+	explosion(loc, 0, 0, 2)
