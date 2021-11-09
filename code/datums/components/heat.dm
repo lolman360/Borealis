@@ -4,15 +4,15 @@
 	var/overheatThreshold = 100
 	var/lastFiredTick
 	var/heatPerFire
-	var/coolPerTick = 1
-	var/ventCooldown = 15 //30s
+	var/coolPerTick = 0.01 //world.time ticks in ds
+	var/ventCooldown = 30 SECONDS
 	var/lastVentedTick
 
 
 /datum/component/heat/Initialize(clickTypeToVent = COMSIG_CLICK_CTRL, parentIsGun, _heatThresholdSpecial, _overheatThreshold, _heatPerFire, _coolPerTick, _ventCooldown)
 	if(parentIsGun && istype(parent, /obj/item/gun))
 		RegisterSignal(parent, COMSIG_GUN_POST_FIRE, .proc/tickHeat)
-	else if(istype(parent, /obj/item))
+	else if(istype(parent, /obj/item) && ! parentIsGun)
 		RegisterSignal(parent, COMSIG_IATTACK, .proc/tickHeat)
 	else
 		return COMPONENT_INCOMPATIBLE
@@ -28,6 +28,7 @@
 
 /datum/component/heat/proc/tickHeat()
 	var/deltaT = world.time - lastFiredTick
+	world.log << max(0, currentHeat - deltaT*coolPerTick) //debug line
 	currentHeat = max(0, currentHeat - deltaT*coolPerTick)
 
 	currentHeat += heatPerFire
@@ -40,9 +41,14 @@
 		ventHeat(TRUE)
 
 
-/datum/component/heat/proc/ventHeat(var/forced)
-	if(!forced && lastVentedTick - world.time < ventCooldown)
+/datum/component/heat/proc/ventHeat(var/forced = FALSE)
+	if(world.time - lastVentedTick < ventCooldown)
+		world.log << "VENT CD"
 		return FALSE //we fail
-	currentHeat = 0
-	lastVentedTick = world.time
-	SEND_SIGNAL(parent, COMSIG_HEAT_VENT)
+	else
+		currentHeat = 0
+		world.log << "VENT"
+		SEND_SIGNAL(parent, COMSIG_HEAT_VENT)
+		if(!forced)
+			world.log << "VENT CD reset"
+			lastVentedTick = world.time

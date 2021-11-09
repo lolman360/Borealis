@@ -47,10 +47,10 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 
 /obj/item/gun/hydrogen/Initialize()
 	..()
+	AddComponent(/datum/component/heat, COMSIG_CLICK_CTRL, TRUE,  vent_level,  overheat,  heat_per_shot, 0.01, vent_level_timer)
 	flask = new /obj/item/hydrogen_fuel_cell(src) // Give the gun a new flask when mapped in.
 	RegisterSignal(src, COMSIG_HEAT_VENT, .proc/ventEvent)
 	RegisterSignal(src, COMSIG_HEAT_OVERHEAT, .proc/handleoverheat)
-	AddComponent(/datum/component/heat, COMSIG_CLICK_CTRL, TRUE,  vent_level,  overheat,  heat_per_shot, 2, vent_level_timer)
 	update_icon()
 	START_PROCESSING(SSobj, src)
 
@@ -183,7 +183,7 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 // The weapon is too hot, burns the user's hand.
 /obj/item/gun/hydrogen/proc/handleoverheat()
 	src.visible_message(SPAN_DANGER("The [src.name] overheats, burning its wielder's hands!"))
-	if(loc == /mob/living)
+	if(isliving(loc))
 		var/mob/living/L = loc
 	// Burn the hand holding the gun
 		if(L.hand == L.l_hand) // Are we using the left arm?
