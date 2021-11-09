@@ -52,9 +52,6 @@
 		list(mode_name = "overclock", mode_desc="A large ball of volatile hydrogen to blow up cover or targets", projectile_type = /obj/item/projectile/hydrogen/max, fire_sound = 'sound/effects/supermatter.ogg', fire_delay = 50, icon = "kill", use_plasma_cost = 20, icon_state = "prifle_crit")
 	)
 
-/obj/item/gun/hydrogen/incinerator/Initialize()
-	..()
-	//flask = new /obj/item/hydrogen_fuel_cell/infinite(src) // Apparently never running out of ammo is too OP.
 
 // Can't remove the cell
 /* It was nerfed back to a normal cell, so there's no reason to not be able to remove it.
