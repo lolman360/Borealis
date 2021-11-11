@@ -110,3 +110,11 @@
 		"Gray"		=	/obj/item/clothing/head/armor/helmet/tanker/gray,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(tanker_helmet)
+
+/datum/gear/head/anarchist_cap
+	display_name = "anarchist hat"
+	path = /obj/item/clothing/head/costume/history/anarchist_cap
+
+/datum/gear/head/scarecrow_hat
+	display_name = "scarecrow hat"
+	path = /obj/item/clothing/head/costume/halloween/scarecrow
