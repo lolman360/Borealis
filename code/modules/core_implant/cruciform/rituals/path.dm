@@ -356,7 +356,7 @@
 /datum/ritual/cruciform/factorial/charge
 	name = "Cant of the craft"
 	desc = "Use the energy in your cruciform to charge the power cell you are holding."
-	phrase = "Observationibus illustrare pio Sine aedificare seris, donec sacra studia cursus ultrices venas et indicia mitte rapinae elit."
+	phrase = "Sine aedificare seris."
 	cooldown = TRUE
 	cooldown_time = 0 MINUTES
 	cooldown_category = "charging"
@@ -387,8 +387,9 @@
 	else
 		fail("You need a power cell in your active hand to charge it.", user, C)
 
+
 // Self-Repair
-/datum/ritual/cruciform/factorial/self_repair
+/*/datum/ritual/cruciform/factorial/self_repair
 	name = "Litany of the iron soul"
 	desc = "Use the energy in your cruciform to repair all mechanical parts on the bearer, be they synthetic limbs or organs."
 	phrase = "Sic invocamus Absoluta. Ergo omne quod facimus separabuntur."
@@ -397,8 +398,8 @@
 	cooldown_category = "repair"
 	power = 25
 	nutri_cost = 25
-	blood_cost = 25
-
+	blood_cost = 25*/
+/*
 /datum/ritual/cruciform/factorial/self_repair/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	if(user.species?.reagent_tag != IS_SYNTHETIC)
 		if(user.nutrition >= nutri_cost)
@@ -410,9 +411,10 @@
 	for(var/obj/item/organ/augmentic in user) // Run this loop for every organ the user has
 		if(augmentic.nature == MODIFICATION_SILICON) // Are the organ made of metal?
 			augmentic.rejuvenate() // Repair the organ
-	to_chat(user, "Your mechanical organs knit themselves back together.")
+	to_chat(user, "Your mechanical organs knit themselves back together.")*/
 
 // Mass-Repair
+/*
 /datum/ritual/cruciform/factorial/mass_repair
 	name = "Blessing of the machine"
 	desc = "Use the energy in your cruciform to repair all mechanical parts of those around you, be they synthetic limbs or organs."
@@ -423,7 +425,8 @@
 	power = 50
 	nutri_cost = 25
 	blood_cost = 25
-
+*/
+/*
 /datum/ritual/cruciform/factorial/mass_repair/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	if(user.species?.reagent_tag != IS_SYNTHETIC)
 		if(user.nutrition >= nutri_cost)
@@ -440,4 +443,100 @@
 				to_chat(H, "Your [augmentic.name] repair itself!")
 				synth = TRUE // They have a prosthetic
 		if(synth) // Did they have any prosthetics?
-			add_effect(H, FILTER_HOLY_GLOW, 25) // Make them glow.
+			add_effect(H, FILTER_HOLY_GLOW, 25) // Make them glow
+*/
+//Zavod edit: Commented out because garbage aheal. Hello,  balance?
+
+/datum/ritual/cruciform/factorial/blueprint_check
+	name = "Divine Guidance"
+	phrase = "Dirige me in veritate tua, et doce me, quia tu es Deus salvator meus, et te sustinui tota die."
+	desc = "Building needs mainly faith but resources as well. Find out what it takes."
+	power = 5
+	category = "Construction"
+	nutri_cost = 10
+	blood_cost = 10
+
+/datum/ritual/cruciform/factorial/blueprint_check/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
+	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
+	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
+	var/list/listed_components = list()
+	for(var/requirement in blueprint.materials)
+		var/atom/placeholder = requirement
+		if(!ispath(placeholder))
+			continue
+		listed_components += list("[blueprint.materials[placeholder]] [initial(placeholder.name)]")
+	to_chat(user, SPAN_NOTICE("[blueprint.name] requires: [english_list(listed_components)]."))
+	if(user.species?.reagent_tag != IS_SYNTHETIC)
+		if(user.nutrition >= nutri_cost)
+			user.nutrition -= nutri_cost
+		else
+			to_chat(user, SPAN_WARNING("You manage to cast the litany at a cost. The physical body consumes itself..."))
+			user.vessel.remove_reagent("blood",blood_cost)
+
+/datum/ritual/cruciform/factorial/construction
+	name = "Manifestation"
+	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
+	desc = "Build and expand. Shape your faith into something more sensible."
+	power = 40
+	category = "Construction"
+	nutri_cost = 25
+	blood_cost = 25
+
+
+/datum/ritual/cruciform/factorial/construction/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
+	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
+	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
+	var/turf/target_turf = get_step(user,user.dir)
+	if(!blueprint)
+		fail("You decided not to test your faith.",user,C,targets)
+		return
+	if(!items_check(user, target_turf, blueprint))
+		fail("Something is missing.",user,C,targets)
+		return
+
+	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
+	if(user.species?.reagent_tag != IS_SYNTHETIC)
+		if(user.nutrition >= nutri_cost)
+			user.nutrition -= nutri_cost
+		else
+			to_chat(user, SPAN_WARNING("You manage to cast the litany at a cost. The physical body consumes itself..."))
+			user.vessel.remove_reagent("blood",blood_cost)
+
+	var/obj/effect/overlay/nt_construction/effect = new(target_turf, blueprint.build_time)
+
+	if(!do_after(user, blueprint.build_time, target_turf))
+		fail("You feel something is judging you upon your impatience",user,C,targets)
+		effect.failure()
+		return
+	if(!items_check(user, target_turf, blueprint))
+		fail("Something got stolen!",user,C,targets)
+		effect.failure()
+		return
+	//magic has to be a bit innacurate
+
+	for(var/item_type in blueprint.materials)
+		var/t = locate(item_type) in target_turf.contents
+		qdel(t)
+
+	effect.success()
+	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
+	var/build_path = blueprint.build_path
+	new build_path(target_turf)
+
+/datum/ritual/cruciform/factorial/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
+	var/list/turf_contents = target.contents
+
+	for(var/item_type in blueprint.materials)
+		var/located_raw = locate(item_type) in turf_contents
+		//single item check is handled there, rest of func is for stacked items or items with containers
+		if(!located_raw)
+			return FALSE
+
+		var/required_amount = blueprint.materials[item_type]
+        // I hope it is fast enough
+        // could have initialized it in glob
+		if(item_type in typesof(/obj/item/stack/))
+			var/obj/item/stack/stacked = located_raw
+			if(stacked.amount < required_amount)
+				return FALSE
+	return TRUE

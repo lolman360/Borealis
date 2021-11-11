@@ -147,8 +147,8 @@ It also resets instability to 0 so bad things don't happen.
 /obj/item/genetics/purger
 	name = "Blue-Ink Mutagenic Purger"
 	desc = "An economic gene-fixer specifically made to purge mutations from the body. It takes a very long time to print."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "cimplanter2"
+	icon = 'icons/obj/genetics/dna_syringes.dmi'
+	icon_state = "dna_purger_b"
 	item_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
@@ -173,7 +173,7 @@ It also resets instability to 0 so bad things don't happen.
 	user.do_attack_animation(target)
 
 	if(do_mob(user, target, 50) && !used)
-		icon_state = "cimplanter0"
+		icon_state = "dna_purger_empty"
 		used = TRUE
 		to_chat(target, SPAN_NOTICE("You feel your body begin to stabilize, and your anomalous mutations leave you."))
 		target.unnatural_mutations.removeAllMutations()
@@ -207,7 +207,7 @@ Can also be loaded into a (Syringe probably) and injected into people. But that 
 /obj/item/genetics/sample/proc/unload_genetics()
 	var/datum/genetics/genetics_holder/outbound_genetics_holder = genetics_holder.Copy()
 	name = "Empty Mutagenic Sample Plate"
-	genetics_holder = null
+	genetics_holder.removeAllMutations()
 	icon_state = "slide"
 	return outbound_genetics_holder
 
@@ -226,8 +226,8 @@ Can also be loaded into a (Syringe probably) and injected into people. But that 
 /obj/item/genetics/mut_injector
 	name = "Mutagenic Injector"
 	desc = "A specialized syringe for injecting Mutagens into a host's system."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "dnainjector0"
+	icon = 'icons/obj/genetics/dna_syringes.dmi'
+	icon_state = "dna_injector_0"
 	item_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
@@ -256,7 +256,7 @@ Can also be loaded into a (Syringe probably) and injected into people. But that 
 	user.do_attack_animation(target)
 
 	if(do_mob(user, target, 50) && src && loaded_sample)
-		icon_state = "dnainjector0"
+		icon_state = "dna_injector_0"
 		var/datum/genetics/genetics_holder/injection = loaded_sample.unload_genetics()
 		to_chat(user, SPAN_NOTICE("\The [user] injects a sample into \the [target]"))
 		injection.inject_mutations(target)
@@ -272,7 +272,7 @@ Can also be loaded into a (Syringe probably) and injected into people. But that 
 		if(!loaded_sample && user.unEquip(incoming_sample, src))
 			to_chat(user, SPAN_NOTICE("You load the mutagenic injector with a sample plate."))
 			loaded_sample = incoming_sample
-			icon_state = "dnainjector"
+			icon_state = "dna_injector_1"
 
 /obj/item/genetics/mut_injector/attack_self(var/mob/user)
 	if(!loaded_sample)
@@ -280,7 +280,7 @@ Can also be loaded into a (Syringe probably) and injected into people. But that 
 	user.put_in_hands(loaded_sample)
 	to_chat(user, SPAN_NOTICE("You remove the sample plate from \the [src]."))
 	loaded_sample = null
-	icon_state = "dnainjector0"
+	icon_state = "dna_injector_0"
 	return
 
 /*
@@ -325,6 +325,17 @@ Circuit boards for different Genetics Machines.
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 
+/obj/item/circuitboard/genetics/gene_analyzer
+	build_name = "Belvoix Genetic Analyzer"
+	build_path = /obj/machinery/genetics/gene_analyzer
+	board_type = "machine"
+	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 4, //Affects Genes Analyzed
+		/obj/item/stock_parts/matter_bin = 4, //Affects Max Sample plates
+	)
+
+
 /obj/item/computer_hardware/hard_drive/portable/design/genetics_kit
 	disk_name = "Genetics Studio Design Kit"
 	icon_state = "moebius"
@@ -333,7 +344,8 @@ Circuit boards for different Genetics Machines.
 		/datum/design/autolathe/genetics/pulper = 0,
 		/datum/design/autolathe/genetics/cloner = 0,
 		/datum/design/autolathe/genetics/clone_console = 0,
-		/datum/design/autolathe/genetics/purger = 0
+		/datum/design/autolathe/genetics/purger = 0,
+		/datum/design/autolathe/genetics/mut_injector = 0
 	)
 
 

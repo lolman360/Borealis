@@ -118,7 +118,6 @@
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
 // /obj/item/radio signals
 
-
 //obj/item/gun signals
 #define COMSIG_GUN_POST_FIRE "gun_post_fire"	//from base of /obj/item/gun/proc/handle_post_fire(): (atom/target, pointblank, reflex)
 

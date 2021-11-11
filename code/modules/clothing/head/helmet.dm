@@ -326,7 +326,6 @@
 		usr.update_action_buttons()
 		return 1
 
-
 /obj/item/clothing/head/helmet/technomancersuit
 	name = "'Mark V' environmental protection helmet"
 	desc = "You feel like this helmet is rare, for some reason."
@@ -805,6 +804,18 @@
 		bullet = 20,
 		energy = 10,
 		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/helmet/visor/cyberpunkgoggle/armored
+	name = "\improper Type-34 Semi-Enclosed Headwear"
+	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's someone somewhere behind that."
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
