@@ -23,7 +23,7 @@
 	var/web_activity = 30
 	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 5, bio = 10, rad = 25, agony = 0)
 	var/egg_inject_chance = 0 //AHAHAHAHAHAHAHAAHAHAH, no
-	life_cycles_before_sleep = 3000 //We need more time to eat and web
+//	life_cycles_before_sleep = 3000 //We need more time to eat and web Zavod edit: Commented out to improve performance.
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/midwife
 	name = "midwife spider"
@@ -117,7 +117,7 @@
 	pixel_x = -16
 	pixel_y = null
 
-/mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
+/mob/living/carbon/superior_animal/giant_spider/nurse/UnarmedAttack()
 	..()
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
@@ -228,6 +228,7 @@
 								if((M.stat == CONSCIOUS) || is_carrion(M)) //We do eat are own
 									continue
 								large_cocoon = 1
+								fed += 1 //we get half what we need to leg an egg
 
 								if(istype(M, /mob/living/carbon/human))
 									if(M.faction == "spiders")
@@ -239,7 +240,7 @@
 										M.adjustOxyLoss(200)
 										M.adjustBrainLoss(60)
 										M.updatehealth()
-										fed += 2 //we ate a person we are able to lay eggs
+										fed += 2 //we ate a person we are able to lay eggs and have 1 fed over
 
 								C = C || new(targetTurf)
 								M.forceMove(C)

@@ -65,6 +65,11 @@
 	desc = "An armored vest that protects against some damage. This one has been done in marshal security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
 
+/obj/item/clothing/suit/storage/vest/ironhammer
+	name = "webbed operator armor"
+	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors and has various pouches and straps attached."
+	icon_state = "webvest_ironhammer"
+
 /obj/item/clothing/suit/armor/vest/ironhammer/full
 	name = "marshal tactical unit armor"
 	desc = "An armored vest painted in Marshals colors. This one has shoulderpads and kneepads included to protect all parts of the body."
@@ -488,6 +493,11 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
+/obj/item/clothing/suit/storage/vest/ironhammer
+	name = "webbed operator armor"
+	desc = "An armored vest that protects against some damage. This one has been done in Nadezhda Marshal colors and has various pouches and straps attached."
+	icon_state = "webvest_ironhammer"
+
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
 	name = "heavy armor vest"
@@ -535,7 +545,6 @@
 	pockets.storage_slots = 2	//two slots
 	pockets.max_w_class = ITEM_SIZE_NORMAL		//fits two normal size items as its big pockets
 	pockets.max_storage_space = 8
-	pockets.cant_hold = list(/obj/item/clothing/accessory)
 
 //Blackshield armor
 /obj/item/clothing/suit/armor/platecarrier

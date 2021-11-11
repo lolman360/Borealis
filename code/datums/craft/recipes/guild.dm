@@ -100,7 +100,7 @@
 //Tools --------------------------
 /datum/craft_recipe/guild/arcwelder
 	name = "arc welder"
-	result = /obj/item/tool/arcwelder
+	result = /obj/item/tool/baton/arcwelder
 	steps = list(
 		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL, "time" = 60),
 		list(QUALITY_CUTTING, 20, "time" = 40),
@@ -304,6 +304,20 @@
 	list(QUALITY_HAMMERING, 45, "time" = 40),
 	list(/obj/item/tool_upgrade/augment/fuel_tank, 1, "time" = 30)
 	)
+
+/datum/craft_recipe/guild/bastion
+	name = "Bastion Shield"
+	result = /obj/item/shield/riot/bastion
+	steps = list(
+	list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL, "time" = 30),
+	list(QUALITY_SAWING, 30, "time" = 60),
+	list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 30),
+	list(QUALITY_WELDING, 40, "time"= 60),
+	list(/obj/item/shield/riot, 1, "time" = 30),
+	list(QUALITY_HAMMERING, 45, "time" = 40),
+	list(CRAFT_MATERIAL, 1, MATERIAL_PLASMAGLASS, "time" = 30)
+	)
+
 
 //Wearables =========================
 /datum/craft_recipe/guild/technosuit
@@ -578,8 +592,8 @@
 	)
 
 /datum/craft_recipe/guild/guild_bin
-	name = "Cast Matter Bin"
-	result = /obj/item/stock_parts/matter_bin/guild
+	name = "Hand Cast Matter Bin"
+	result = /obj/item/stock_parts/matter_bin/handmade
 	steps = list(
 		list(/obj/item/stock_parts/matter_bin/super, 1),
 		list(QUALITY_SCREW_DRIVING, 10, 70),
@@ -592,8 +606,8 @@
 	)
 
 /datum/craft_recipe/guild/guild_manip
-	name = "Forged Manipulator"
-	result = /obj/item/stock_parts/manipulator/guild
+	name = "Perfected Forged Manipulator"
+	result = /obj/item/stock_parts/manipulator/handmade
 	steps = list(
 		list(/obj/item/stock_parts/manipulator/pico, 1),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -607,8 +621,8 @@
 	)
 
 /datum/craft_recipe/guild/guild_laser
-	name = "Perfected Micro-Laser"
-	result = /obj/item/stock_parts/micro_laser/guild
+	name = "Handmade Perfected Micro-Laser"
+	result = /obj/item/stock_parts/micro_laser/handmade
 	steps = list(
 		list(/obj/item/stock_parts/micro_laser/ultra, 1),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -620,8 +634,8 @@
 	)
 
 /datum/craft_recipe/guild/guild_scanner
-	name = "Perfected Scanning Module"
-	result = /obj/item/stock_parts/scanning_module/guild
+	name = "Manually Perfected Scanning Module"
+	result = /obj/item/stock_parts/scanning_module/handmade
 	steps = list(
 		list(/obj/item/stock_parts/scanning_module/phasic, 1),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -634,7 +648,7 @@
 
 /datum/craft_recipe/guild/guild_capacitor
 	name = "Crafted Ultra Capacitor"
-	result = /obj/item/stock_parts/capacitor/guild
+	result = /obj/item/stock_parts/capacitor/handmade
 	steps = list(
 		list(/obj/item/stock_parts/capacitor/super, 1),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -646,8 +660,8 @@
 	)
 
 /datum/craft_recipe/guild/guild_bin_alt
-	name = "Cast Matter Bin Alt"
-	result = /obj/item/stock_parts/matter_bin/guild
+	name = "Hand Cast Matter Bin Alt"
+	result = /obj/item/stock_parts/matter_bin/handmade
 	steps = list(
 		list(/obj/item/stock_parts/matter_bin/adv, 2),
 		list(QUALITY_SCREW_DRIVING, 10, 70),
@@ -658,10 +672,10 @@
 		list(QUALITY_HAMMERING, 40),
 		list(QUALITY_SAWING, 60)
 	)
-
+/*
 /datum/craft_recipe/guild/guild_manip_alt
 	name = "Forged Manipulator Alt"
-	result = /obj/item/stock_parts/manipulator/guild
+	result = /obj/item/stock_parts/manipulator/handmade
 	steps = list(
 		list(/obj/item/stock_parts/manipulator/nano, 2),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -676,7 +690,7 @@
 
 /datum/craft_recipe/guild/guild_laser_alt
 	name = "Perfected Micro-Laser Alt"
-	result = /obj/item/stock_parts/micro_laser/guild
+	result = /obj/item/stock_parts/micro_laser/handmade
 	steps = list(
 		list(/obj/item/stock_parts/micro_laser/high, 2),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -689,7 +703,7 @@
 
 /datum/craft_recipe/guild/guild_scanner_alt
 	name = "Perfected Scanning Module Alt"
-	result = /obj/item/stock_parts/scanning_module/guild
+	result = /obj/item/stock_parts/scanning_module/handmade
 	steps = list(
 		list(/obj/item/stock_parts/scanning_module/adv, 2),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -702,7 +716,7 @@
 
 /datum/craft_recipe/guild/guild_capacitor_alt
 	name = "Crafted Ultra Capacitor Alt"
-	result = /obj/item/stock_parts/capacitor/guild
+	result = /obj/item/stock_parts/capacitor/handmade
 	steps = list(
 		list(/obj/item/stock_parts/capacitor/adv, 2),
 		list(QUALITY_SCREW_DRIVING, 40, 70),
@@ -712,7 +726,7 @@
 		list(CRAFT_MATERIAL, 2, MATERIAL_SILVER),
 		list(QUALITY_SAWING, 60)
 	)
-
+*/
 // Boxes for max crafting, should always cost around x5 materials or more.
 /datum/craft_recipe/guild/guild_bin_box
 	name = "Box of Cast Matter Bins"

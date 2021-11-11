@@ -14,7 +14,7 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 /obj/item/gun/hydrogen
 	name = "\improper \"Venatori\" hydrogen-plasma gun"
 	desc = "A volatile but powerful weapon that uses hydrogen flasks to fire destructive plasma bolts. The brainchild of Soteria Director Nakharan Mkne, meant to compete with and exceed capabilities of Absolutist \
-	plasma weapon designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapon's extreme heat generation without being \
+	own plasma weapon designs, it succeeded. However, it did so by being extremely dangerous, requiring an intelligent and careful operator who can correctly manage the weapon's extreme heat generation over heating without being \
 	burnt to a crisp."
 	icon = 'icons/obj/guns/plasma/hydrogen.dmi'
 	icon_state = "plasma"
@@ -44,16 +44,17 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 	// Damage dealt when overheating
 	var/overheat_damage = 25 // Applied to the hand holding the gun.
 
+/obj/item/gun/hydrogen/Initialize(mapload = TRUE)
+	..()
+	flask = new /obj/item/hydrogen_fuel_cell(src) // Give the gun a new flask when mapped in.
 
-/obj/item/gun/hydrogen/Initialize()
+/obj/item/gun/hydrogen/New()
 	..()
 	AddComponent(/datum/component/heat, COMSIG_CLICK_CTRL, TRUE,  vent_level,  overheat,  heat_per_shot, 0.01, vent_level_timer)
-	flask = new /obj/item/hydrogen_fuel_cell(src) // Give the gun a new flask when mapped in.
 	RegisterSignal(src, COMSIG_HEAT_VENT, .proc/ventEvent)
 	RegisterSignal(src, COMSIG_HEAT_OVERHEAT, .proc/handleoverheat)
 	update_icon()
 	START_PROCESSING(SSobj, src)
-
 
 /obj/item/gun/hydrogen/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -62,19 +63,14 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 /obj/item/gun/hydrogen/examine(mob/user)
 	..(user)
 	if(!flask)
-		to_chat(user, SPAN_NOTICE("Has no flask inserted."))
+		to_chat(user, SPAN_NOTICE("[src] has no flask inserted."))
 		return
 	if(use_plasma_cost) // So that the bluecross weapon can use 0 plasma
-		var/shots_remaining = round(flask.plasma / use_plasma_cost)
-		to_chat(user, "Has [shots_remaining] shot\s remaining.")
+		to_chat(user, "[src] has [round(flask.plasma / use_plasma_cost)] shot\s remaining.")
 	if(!secured)
 		to_chat(user, SPAN_DANGER("The fuel cell is not secured!"))
-
 	to_chat(user, SPAN_NOTICE("Control-Click to manually vent this weapon's heat."))
 	return
-
-
-
 
 // Removing the plasma flask
 /obj/item/gun/hydrogen/MouseDrop(over_object)
@@ -115,7 +111,6 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 						user.apply_damage(overheat_damage, BURN, def_zone = BP_L_ARM)
 					else // If not then it must be the right arm.
 						user.apply_damage(overheat_damage, BURN, def_zone = BP_R_ARM)
-
 				return
 		else
 			to_chat(user, "There is no flask to remove.")
@@ -139,7 +134,7 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 	if(connected) // Are we connected to something?
 		if(loc != connected) // Are we in the connected object?
 			if(loc != connected.loc) // Are we not in the same place?
-				src.visible_message("The [src.name] reattaches itself to the [connected.name].")
+				src.visible_message("The [src.name] reattach itself to the [connected.name].")
 				usr.remove_from_mob(src)
 				forceMove(connected)
 
@@ -152,7 +147,6 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 		else // If not then it must be the right arm.
 			user.apply_damage(overheat_damage, BURN, def_zone = BP_R_ARM)
 		return
-
 
 /obj/item/gun/hydrogen/consume_next_projectile()
 	if(!flask)
@@ -170,24 +164,21 @@ Securing and unsecuring the flask is a long and hard task, and a failure when un
 	if(connected)
 		add_overlay("[icon_state]_connected")
 
-
 /////////////////////
 ///  Custom procs ///
 /////////////////////
 
 // Vent the weapon
-/obj/item/gun/hydrogen/proc/ventEvent() //lol
+/obj/item/gun/hydrogen/proc/ventEvent()
 	src.visible_message("[src]'s vents open and spew super-heated steam, cooling itself down.")
-
 
 // The weapon is too hot, burns the user's hand.
 /obj/item/gun/hydrogen/proc/handleoverheat()
 	src.visible_message(SPAN_DANGER("[src] overheats, its surface becoming blisteringly hot as a pressure warning beeps!"))
 	addtimer(CALLBACK(src , .proc/doVentsplosion), 3 SECONDS)
-	if(isliving(loc))
-		var/mob/living/L = loc
+	var/mob/living/L = loc
+	if(istype(L))
 		to_chat(L, SPAN_DANGER("[src] is going to explode!"))
-	// Burn the hand holding the gun
 		if(L.hand == L.l_hand) // Are we using the left arm?
 			L.apply_damage(overheat_damage, BURN, def_zone = BP_L_ARM)
 		else // If not then it must be the right arm.

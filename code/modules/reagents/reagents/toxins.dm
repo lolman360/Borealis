@@ -470,7 +470,7 @@
 	reagent_state = LIQUID
 	color = "#a37d9c"
 	overdose = REAGENTS_OVERDOSE/3
-	addiction_chance = 0 //Will STILL likely always be addicting
+	addiction_chance = 0 //Zavod edit: Turned to 0 because addiction to such a common toxin sucks
 	nerve_system_accumulations = 10
 	strength = 0.1
 	heating_point = 523
