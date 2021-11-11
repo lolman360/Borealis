@@ -205,6 +205,17 @@
 		list(QUALITY_WELDING, 30, "time" = 60)
 	)
 
+/datum/craft_recipe/repairs/armstrong_boltgun
+	result = /obj/item/gun/projectile/boltgun/lever
+	steps = list(
+		list(/obj/item/gun/projectile/boltgun/sawn/lever, 1, "time" = 60),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_SAWING, 30, "time" = 60),
+		list(QUALITY_HAMMERING, 30, "time" = 60),
+		list(QUALITY_WELDING, 30, "time" = 60)
+	)
+
 /datum/craft_recipe/repairs/juggernaut_helm
 	name = "Juggernaut bomb helmet"
 	result = /obj/item/clothing/head/helmet/space/bomb/security
