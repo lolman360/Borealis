@@ -227,7 +227,7 @@
 		to_chat(user, SPAN_WARNING("You cannot modify \the [src] while it is being worn."))
 		return
 
-	if(istype(W,/obj/item/tool/screwdriver))
+	if(W.has_quality(QUALITY_BOLT_TURNING))
 		if(boots || tank || helmet)
 			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank,helmet)
 			if(!choice) return
