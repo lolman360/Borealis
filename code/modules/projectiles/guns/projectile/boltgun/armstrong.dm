@@ -26,8 +26,8 @@
 	caliber = CAL_MAGNUM
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
 
-/obj/item/gun/projectile/boltgun/lever/bolt_act()
-	..()
+/obj/item/gun/projectile/boltgun/lever/bolt_act(mob/living/user)
 	if(!silenced) //silenced sprites look weird, also why would you do do a visible_message+gun sound with a silenced gun
-		visible_message(SPAN_NOTICE("\The [usr] spins \the [src] as they work the lever!"))
+		visible_message(SPAN_NOTICE("\The [user] spins \the [src] as they work the lever!"))
 		playsound(src.loc, 'sound/weapons/revolver_spin.ogg', 100, 1)
+	..()

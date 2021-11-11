@@ -206,6 +206,7 @@
 	)
 
 /datum/craft_recipe/repairs/armstrong_boltgun
+	name = "Armstrong levergun"
 	result = /obj/item/gun/projectile/boltgun/lever
 	steps = list(
 		list(/obj/item/gun/projectile/boltgun/sawn/lever, 1, "time" = 60),
