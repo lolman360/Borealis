@@ -123,7 +123,6 @@
 	item_state = "lever"
 	gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG, GUN_SCOPE) //Dosnt take a silencer cuz thats just mean, also 60-06
 	bolt_training = FALSE
-	saw_off = FALSE //no
 	caliber = CAL_ANTIM
 	max_shells = 4
 	recoil_buildup = 60
