@@ -14,6 +14,7 @@
 	var/datum/genetics/genetics_holder/unnatural_mutations = list() //GMO in your MEAT
 	var/source_mob
 	var/source_name
+	price_tag = 10
 
 //For initializing genetics information for meat, so it's easy to call.
 /obj/item/reagent_containers/food/snacks/meat/proc/initialize_genetics(mob/living/meat_source)

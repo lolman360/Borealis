@@ -171,7 +171,6 @@
 // Drop all the loot that the bot gathered on the ground.
 /mob/living/carbon/superior_animal/robot/mining/proc/drop_loot()
 	visible_message("[src] empties \his storage bin.")
-//	var/turf/T = get_turf(src) Commented out because it doesn't seem to do anything?
 	for(var/obj/O in contents) // Empty everything
 		contents -= O
 		O.loc = src.loc

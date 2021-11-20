@@ -288,6 +288,7 @@
 		/obj/item/taperoll/medical,
 		/obj/item/clothing/gloves,
 		/obj/item/clothing/glasses,
+		/obj/item/device/radio,
 		/obj/item/ammo_casing/flare,
 		/obj/item/gun/projectile/boltgun/flare_gun
 	)
@@ -324,6 +325,7 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/melee,
+		/obj/item/device/radio,
 		/obj/item/tool/knife,
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/revolver/lemant,
@@ -475,7 +477,7 @@
 	var/mob/M = usr
 	var/list/options = list()
 	options["6 Large"]   = "large_storage"
-	options["9 Normale"] = "big_storage"
+	options["9 Normal"] = "big_storage"
 	options["14 Small"]  = "small_storage"
 
 	var/choice = input(M,"What kind of storage do you want?","Adjust Storage") as null|anything in options
