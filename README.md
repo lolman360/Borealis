@@ -1,8 +1,6 @@
-![](https://cdn.discordapp.com/attachments/265411250341543936/269612274765791242/eris_128.png)
-# Endless Horizon: CEV-Eris [![Build Status](https://travis-ci.org/discordia-space/CEV-Eris.svg?branch=master)](https://travis-ci.org/Endless-Horizon/CEV-Eris)[![Krihelimeter](http://www.krihelinator.xyz/badge/discordia-space/CEV-Eris/)](http://www.krihelinator.xyz)
-[![discord](https://discordapp.com/api/guilds/255035529085583360/widget.png)](https://discord.gg/QfEg7K7)
+![Travis (.com)](https://img.shields.io/travis/com/Owowa13/Borealis?style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/Owowa13/Borealis?style=for-the-badge)
 
-Корабль, который должен умирать.
+# CODENAME: BOREALIS 
 
 ## CONTRIBUTING
 
